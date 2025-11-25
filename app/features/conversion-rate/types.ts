@@ -6,10 +6,10 @@ export type RawData = {
 
 export type ChartData = {
   date: string;
-  conversionRate: number;
+  [key: string]: number | string;
 };
 
 export type ConversionVariation = {
-  id?: number;
+  id: number;
   name: string;
 };

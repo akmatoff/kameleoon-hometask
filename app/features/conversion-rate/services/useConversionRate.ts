@@ -1,29 +1,25 @@
 import data from "@/data/data.json";
 import { useMemo } from "react";
 import type { ChartData, RawData } from "../types";
+import { VARIATIONS } from "../constants";
 
-export const useConversionRate = (
-  selectedVariations: number[]
-): ChartData[] => {
+export const useConversionRate = (): ChartData[] => {
   const rawData = data.data as RawData[];
 
   return useMemo(() => {
     return rawData.map((item) => {
-      const dataPoint: ChartData = {
+      const record: ChartData = {
         date: item.date,
-        conversionRate: 0,
       };
 
-      selectedVariations.forEach((variation) => {
-        const id = variation.toString();
-        item.visits[id] = item.visits[id] || 0;
-        item.conversions[id] = item.conversions[id] || 0;
+      VARIATIONS.forEach((variation) => {
+        const conversions = item.conversions[variation.id!] || 0;
+        const visits = item.visits[variation.id!] || 0;
 
-        dataPoint.conversionRate =
-          (item.conversions[id] / item.visits[id]) * 100;
+        record[variation.id!] = (conversions / visits) * 100 || 0;
       });
 
-      return dataPoint;
+      return record;
     });
-  }, [selectedVariations]);
+  }, []);
 };

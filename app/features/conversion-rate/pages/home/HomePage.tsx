@@ -1,11 +1,11 @@
-import ConversionChart from "../../components/ConversionChart";
+import Conversions from "@/features/conversion-rate/components/Conversions";
 
 import styles from "./HomePage.module.css";
 
 const HomePage = () => {
   return (
     <main className={styles.main}>
-      <ConversionChart />
+      <Conversions />
     </main>
   );
 };
