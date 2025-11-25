@@ -1,87 +1,72 @@
-# Welcome to React Router!
+# Test Assignment: Interactive Line Chart
 
-A modern, production-ready template for building full-stack React applications using React Router.
+## Goal
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+Build an interactive **Line Chart** to visualize A/B test statistics.
 
-## Features
-
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
-
-## Getting Started
-
-### Installation
-
-Install the dependencies:
-
-```bash
-npm install
-```
-
-### Development
-
-Start the development server with HMR:
-
-```bash
-npm run dev
-```
-
-Your application will be available at `http://localhost:5173`.
-
-## Building for Production
-
-Create a production build:
-
-```bash
-npm run build
-```
-
-## Deployment
-
-### Docker Deployment
-
-To build and run using Docker:
-
-```bash
-docker build -t my-app .
-
-# Run the container
-docker run -p 3000:3000 my-app
-```
-
-The containerized application can be deployed to any platform that supports Docker, including:
-
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
-
-### DIY Deployment
-
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
-```
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
+The project **must be published on GitHub Pages**.
 
 ---
 
-Built with ❤️ using React Router.
+## Data
+
+Use data from `data.json`, which contains fields `date`, `visits`, and `conversions` for each variation.
+
+You need to calculate:
+
+```js
+conversionRate = (conversions / visits) * 100;
+```
+
+---
+
+## Design
+
+The design mockup is provided in the file `mockup.sketch`.
+
+You can open it using **[Lunacy](https://icons8.ru/lunacy)** — a free Sketch-compatible design tool available for all operating systems.
+
+---
+
+## Requirements
+
+- Display a **conversion rate (conversionRate)** line chart for all variations, showing all values as **percentages**.
+- On **hover**, show a **vertical line** and a **popup** with daily data.
+- At least **one variation must always be selected**.
+- When variations are toggled, both X and Y axes must **adapt automatically** to the visible data range.
+- Display all values as **percentages**.
+- Responsive layout for screens between **671 px** and **1300 px**.
+- Controls:
+  - **Variations selector** (choose which lines to display)
+  - **Day / Week selector**
+
+---
+
+## Bonus Features
+
+- Zoom / Reset zoom
+- Line style selector (`Line`, `Smooth`, `Area`)
+- Light / Dark theme toggle
+- Export chart to PNG
+
+---
+
+## Tech Stack
+
+- **React + TypeScript**
+- Any charting library (e.g. **D3**, **VisX**, **Recharts**, etc.)
+- Use **CSS Modules** for component styling.
+- The project must:
+  1. Be published on **GitHub Pages**
+  2. Include a **README** with setup instructions and a short feature overview
+
+---
+
+## Deliverables
+
+1. GitHub repository with full source code
+2. Live demo on GitHub Pages
+3. Clear README including:
+   - Chosen visualization library
+   - Implemented and bonus features
+   - Local setup instructions
