@@ -1,3 +1,4 @@
+import HomePage from "~/features/conversion-rate/pages/home/HomePage";
 import type { Route } from "./+types/home";
 
 export function meta({}: Route.MetaArgs) {
@@ -8,5 +9,5 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
-  return <></>;
+  return <HomePage />;
 }
