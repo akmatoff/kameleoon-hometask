@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
+import { motion } from "motion/react";
+import { GoCheck, GoChevronDown } from "react-icons/go";
 
 import styles from "./Select.module.scss";
-import { motion } from "motion/react";
 
 type Item = {
   label: string;
@@ -45,6 +46,10 @@ export const Select = ({
     setIsOpen(false);
   };
 
+  const isSelected = (selectedValue: string) => {
+    return value === selectedValue;
+  };
+
   return (
     <div
       ref={ref}
@@ -56,7 +61,8 @@ export const Select = ({
         onClick={() => setIsOpen(!isOpen)}
         whileTap={{ scale: 0.98, transition: { duration: 0.2 } }}
       >
-        {displayValue}
+        <span>{displayValue}</span>
+        <GoChevronDown />
       </motion.button>
 
       {isOpen && (
@@ -72,7 +78,9 @@ export const Select = ({
         >
           {items.map((item) => (
             <div key={item.value} onClick={() => handleSelect(item.value)}>
-              {item.label}
+              <span>{item.label}</span>
+
+              {isSelected(item.value) && <GoCheck />}
             </div>
           ))}
         </motion.div>

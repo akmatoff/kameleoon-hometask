@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./MultiSelect.module.scss";
 import { motion } from "motion/react";
+import { GoChevronDown, GoCheck } from "react-icons/go";
 
 type Item = {
   label: string;
@@ -44,6 +45,10 @@ export const MultiSelect = ({
     };
   }, []);
 
+  const isSelected = (value: string) => {
+    return selectedValues.includes(value);
+  };
+
   return (
     <div
       ref={ref}
@@ -55,12 +60,16 @@ export const MultiSelect = ({
         whileTap={{ scale: 0.98, transition: { duration: 0.2 } }}
         onClick={() => setIsOpen(!isOpen)}
       >
-        {selectedValues.length > 0
-          ? selectedValues
-              .map((v) => items.find((i) => i.value === v)?.label)
-              .filter(Boolean)
-              .join(",")
-          : placeholder}
+        <span>
+          {selectedValues.length > 0
+            ? selectedValues
+                .map((v) => items.find((i) => i.value === v)?.label)
+                .filter(Boolean)
+                .join(",")
+            : placeholder}
+        </span>
+
+        <GoChevronDown />
       </motion.button>
 
       {isOpen && (
@@ -76,7 +85,9 @@ export const MultiSelect = ({
         >
           {items.map((item) => (
             <div key={item.value} onClick={() => toggle(item.value)}>
-              {item.label}
+              <span>{item.label}</span>
+
+              {isSelected(item.value) && <GoCheck />}
             </div>
           ))}
         </motion.div>

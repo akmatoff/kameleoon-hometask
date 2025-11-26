@@ -4,6 +4,7 @@ import { VIEW_MODE_OPTIONS, VARIATIONS } from "../constants";
 import MultiSelect from "~/shared/ui/MultiSelect/MultiSelect";
 import Select from "~/shared/ui/Select/Select";
 import useViewMode from "../services/useViewMode";
+import ThemeToggle from "~/shared/ui/ThemeToggle/ThemeToggle";
 
 export const Conversions = () => {
   const { selectedVariations, update } = useSelectedVariations();
@@ -37,6 +38,8 @@ export const Conversions = () => {
           value={viewMode}
           onChange={(value) => updateViewMode(value)}
         />
+
+        <ThemeToggle />
       </div>
 
       <ConversionChart />
