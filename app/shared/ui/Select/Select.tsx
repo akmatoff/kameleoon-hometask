@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
 import styles from "./Select.module.scss";
+import { motion } from "motion/react";
 
 type Item = {
   label: string;
@@ -40,17 +41,36 @@ export const Select = ({
     items.find((item) => item.value === value)?.label || placeholder;
 
   return (
-    <div ref={ref} className={styles.select}>
-      <button onClick={() => setIsOpen(!isOpen)}>{displayValue}</button>
+    <div
+      ref={ref}
+      className={styles.select}
+      role="combobox"
+      aria-expanded={isOpen}
+    >
+      <motion.button
+        onClick={() => setIsOpen(!isOpen)}
+        whileTap={{ scale: 0.98, transition: { duration: 0.2 } }}
+      >
+        {displayValue}
+      </motion.button>
 
       {isOpen && (
-        <div className={styles.popover}>
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{
+            opacity: 1,
+            y: 0,
+          }}
+          className={styles.popover}
+          role="listbox"
+          aria-multiselectable={false}
+        >
           {items.map((item) => (
             <div key={item.value} onClick={() => onChange(item.value)}>
               {item.label}
             </div>
           ))}
-        </div>
+        </motion.div>
       )}
     </div>
   );

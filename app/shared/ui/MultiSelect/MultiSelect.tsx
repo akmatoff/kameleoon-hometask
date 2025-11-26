@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./MultiSelect.module.scss";
+import { motion } from "motion/react";
 
 type Item = {
   label: string;
@@ -44,24 +45,41 @@ export const MultiSelect = ({
   }, []);
 
   return (
-    <div ref={ref} className={styles.select}>
-      <button onClick={() => setIsOpen(!isOpen)}>
+    <div
+      ref={ref}
+      className={styles.select}
+      role="combobox"
+      aria-expanded={isOpen}
+    >
+      <motion.button
+        whileTap={{ scale: 0.98, transition: { duration: 0.2 } }}
+        onClick={() => setIsOpen(!isOpen)}
+      >
         {selectedValues.length > 0
           ? selectedValues
               .map((v) => items.find((i) => i.value === v)?.label)
               .filter(Boolean)
               .join(",")
           : placeholder}
-      </button>
+      </motion.button>
 
       {isOpen && (
-        <div className={styles.popover}>
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{
+            opacity: 1,
+            y: 0,
+          }}
+          className={styles.popover}
+          role="listbox"
+          aria-multiselectable
+        >
           {items.map((item) => (
             <div key={item.value} onClick={() => toggle(item.value)}>
               {item.label}
             </div>
           ))}
-        </div>
+        </motion.div>
       )}
     </div>
   );

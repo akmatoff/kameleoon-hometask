@@ -11,6 +11,8 @@ import {
 import { useConversionRate } from "@/features/conversion-rate/services/useConversionRate";
 import useSelectedVariations from "../services/useSelectedVariations";
 
+const COLORS = ["var(--chart-1)", "var(--chart-2)", "var(--chart-3)"];
+
 export const ConversionChart = () => {
   const data = useConversionRate();
   const { selectedVariations } = useSelectedVariations();
@@ -24,12 +26,12 @@ export const ConversionChart = () => {
         <Tooltip />
         <Legend />
 
-        {selectedVariations.map((variation) => (
+        {selectedVariations.map((variation, index) => (
           <Line
             key={variation.id}
             dataKey={variation.id}
             type="monotone"
-            stroke="var(--chart-1)"
+            stroke={COLORS[index % COLORS.length]}
             strokeWidth={2}
             name={variation.name}
             dot={false}

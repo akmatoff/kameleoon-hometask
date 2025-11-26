@@ -19,7 +19,7 @@ export const Conversions = () => {
   };
 
   return (
-    <div style={{ width: "100%" }}>
+    <div style={{ width: "100%", padding: "16px" }}>
       <div className="conversions__options">
         <MultiSelect
           items={VARIATIONS.map((v) => ({
