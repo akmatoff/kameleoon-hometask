@@ -10,11 +10,15 @@ import {
 } from "recharts";
 import { useConversionRate } from "@/features/conversion-rate/services/useConversionRate";
 import useSelectedVariations from "../services/useSelectedVariations";
+import useViewMode from "../services/useViewMode";
 
 const COLORS = ["var(--chart-1)", "var(--chart-2)", "var(--chart-3)"];
 
 export const ConversionChart = () => {
-  const data = useConversionRate();
+  const { viewMode } = useViewMode();
+
+  const data = useConversionRate(viewMode);
+
   const { selectedVariations } = useSelectedVariations();
 
   return (

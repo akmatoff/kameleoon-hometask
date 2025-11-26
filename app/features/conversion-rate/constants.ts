@@ -8,7 +8,7 @@ export const VARIATIONS: ConversionVariation[] =
     name: variation.name,
   })) || [];
 
-export const CHART_PERIOD_OPTIONS = [
+export const VIEW_MODE_OPTIONS = [
   { value: "day", label: "Day" },
   { value: "week", label: "Week" },
 ];

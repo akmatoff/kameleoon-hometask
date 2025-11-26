@@ -40,6 +40,11 @@ export const Select = ({
   const displayValue =
     items.find((item) => item.value === value)?.label || placeholder;
 
+  const handleSelect = (value: string) => {
+    onChange(value);
+    setIsOpen(false);
+  };
+
   return (
     <div
       ref={ref}
@@ -66,7 +71,7 @@ export const Select = ({
           aria-multiselectable={false}
         >
           {items.map((item) => (
-            <div key={item.value} onClick={() => onChange(item.value)}>
+            <div key={item.value} onClick={() => handleSelect(item.value)}>
               {item.label}
             </div>
           ))}

@@ -13,3 +13,5 @@ export type ConversionVariation = {
   id: number;
   name: string;
 };
+
+export type ViewMode = "day" | "week";
