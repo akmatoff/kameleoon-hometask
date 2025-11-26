@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
+import styles from "./Select.module.scss";
+
 type Item = {
   label: string;
   value: string;
@@ -34,12 +36,15 @@ export const Select = ({
     };
   }, []);
 
+  const displayValue =
+    items.find((item) => item.value === value)?.label || placeholder;
+
   return (
-    <div ref={ref}>
-      <button onClick={() => setIsOpen(!isOpen)}>{value || placeholder}</button>
+    <div ref={ref} className={styles.select}>
+      <button onClick={() => setIsOpen(!isOpen)}>{displayValue}</button>
 
       {isOpen && (
-        <div>
+        <div className={styles.popover}>
           {items.map((item) => (
             <div key={item.value} onClick={() => onChange(item.value)}>
               {item.label}

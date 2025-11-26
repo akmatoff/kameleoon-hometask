@@ -1,0 +1,16 @@
+@use "../../../mixins.scss" as *;
+
+.select {
+    position: relative;
+
+    button {
+        @include input;
+    }
+
+    .popover {
+        @include popover;
+
+        
+    }
+
+}

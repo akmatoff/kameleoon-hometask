@@ -9,6 +9,6 @@ export const VARIATIONS: ConversionVariation[] =
   })) || [];
 
 export const CHART_PERIOD_OPTIONS = [
-  { value: "day", label: "day" },
-  { value: "week", label: "week" },
+  { value: "day", label: "Day" },
+  { value: "week", label: "Week" },
 ];

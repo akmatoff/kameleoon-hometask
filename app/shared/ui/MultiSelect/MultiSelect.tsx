@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import styles from "./MultiSelect.module.scss";
 
 type Item = {
   label: string;
@@ -43,7 +44,7 @@ export const MultiSelect = ({
   }, []);
 
   return (
-    <div ref={ref}>
+    <div ref={ref} className={styles.select}>
       <button onClick={() => setIsOpen(!isOpen)}>
         {selectedValues.length > 0
           ? selectedValues
@@ -54,7 +55,7 @@ export const MultiSelect = ({
       </button>
 
       {isOpen && (
-        <div>
+        <div className={styles.popover}>
           {items.map((item) => (
             <div key={item.value} onClick={() => toggle(item.value)}>
               {item.label}

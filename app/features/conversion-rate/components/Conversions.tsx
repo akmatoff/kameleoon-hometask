@@ -20,7 +20,7 @@ export const Conversions = () => {
 
   return (
     <div style={{ width: "100%" }}>
-      <div>
+      <div className="conversions__options">
         <MultiSelect
           items={VARIATIONS.map((v) => ({
             label: v.name,
