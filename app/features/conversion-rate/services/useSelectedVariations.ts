@@ -12,15 +12,16 @@ export default function useSelectedVariations() {
     const ids =
       !param || param.length === 0
         ? VARIATIONS.map((v) => v.id)
-        : param.split(",").map((id) => Number(id));
+        : decodeURIComponent(param)
+            .split(",")
+            .map((id) => Number(id));
 
     return VARIATIONS.filter((v) => ids.includes(v.id));
   }, [searchParams]);
 
   const update = (value: string[]) => {
-    console.log(value);
     setSearchParams({
-      [QueryParamKeys.SelectedVariations]: value.join(","),
+      [QueryParamKeys.SelectedVariations]: encodeURIComponent(value.join(",")),
     });
   };
 

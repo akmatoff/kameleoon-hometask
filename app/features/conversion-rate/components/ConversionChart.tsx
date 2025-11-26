@@ -20,7 +20,7 @@ export const ConversionChart = () => {
       <LineChart data={data}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="date" />
-        <YAxis width="auto" />
+        <YAxis width="auto" tickFormatter={(value) => `${value}%`} />
         <Tooltip />
         <Legend />
 

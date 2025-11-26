@@ -1,6 +1,6 @@
 import Conversions from "@/features/conversion-rate/components/Conversions";
 
-import styles from "./HomePage.module.css";
+import styles from "./HomePage.module.scss";
 
 const HomePage = () => {
   return (

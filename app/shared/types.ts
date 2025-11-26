@@ -1,3 +1,4 @@
 export enum QueryParamKeys {
-  SelectedVariations = "selectedVariations",
+  SelectedVariations = "variations",
+  SelectedPeriod = "period",
 }
