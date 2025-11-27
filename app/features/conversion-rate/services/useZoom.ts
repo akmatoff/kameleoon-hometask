@@ -19,6 +19,14 @@ export default function useZoom<T>(data: T[], step = 5) {
     setCenterIndex(Math.floor(data.length / 2));
   };
 
+  const canZoomOut = useMemo(() => {
+    return windowSize < data.length;
+  }, [windowSize, data.length]);
+
+  const canZoomIn = useMemo(() => {
+    return windowSize > minSize;
+  }, [windowSize, minSize]);
+
   useEffect(() => {
     setWindowSize((prev) => Math.max(minSize, Math.min(prev, data.length)));
     setCenterIndex((prev) =>
@@ -40,5 +48,5 @@ export default function useZoom<T>(data: T[], step = 5) {
     return data.slice(start, end);
   }, [data, windowSize, centerIndex]);
 
-  return { visibleData, zoomIn, zoomOut, reset };
+  return { visibleData, zoomIn, zoomOut, reset, canZoomOut, canZoomIn };
 }

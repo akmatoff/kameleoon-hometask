@@ -9,6 +9,10 @@
   gap: 4px;
   color: var(--foreground-color);
 
+  &:disabled {
+    opacity: 0.4;
+  }
+
   & svg {
     width: 16px;
     height: 16px;
