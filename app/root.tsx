@@ -9,6 +9,7 @@ import {
 
 import type { Route } from "./+types/root";
 import "./app.scss";
+import LoadingSpinner from "./shared/ui/LoadingSpinner/LoadingSpinner";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -51,7 +52,7 @@ export function HydrateFallback() {
       className="flex center"
       style={{ height: "100vh", background: "var(--background-color)" }}
     >
-      Loading...
+      <LoadingSpinner />
     </div>
   );
 }
