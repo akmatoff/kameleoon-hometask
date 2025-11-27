@@ -14,9 +14,14 @@ export default function useViewMode() {
   }, [searchParams]);
 
   const update = (value: string) => {
-    setSearchParams({
-      [QueryParamKeys.ViewMode]: value,
-    });
+    const newParams = new URLSearchParams(searchParams);
+
+    if (value.length === 0) {
+      newParams.delete(QueryParamKeys.ViewMode);
+    } else {
+      newParams.set(QueryParamKeys.ViewMode, value);
+    }
+    setSearchParams(newParams, { replace: true });
   };
 
   return {

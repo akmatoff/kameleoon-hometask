@@ -22,12 +22,36 @@ export const ConversionChart = ({ data, chartRef }: Props) => {
 
   return (
     <ResponsiveContainer width="100%" height={650} ref={chartRef}>
-      <LineChart data={data}>
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="date" />
-        <YAxis width="auto" tickFormatter={(value) => `${value}%`} />
+      <LineChart
+        data={data}
+        margin={{ bottom: 20, top: 0, left: 8, right: 8 }}
+        responsive
+        accessibilityLayer
+      >
+        <CartesianGrid
+          strokeDasharray="3 3"
+          vertical={false}
+          stroke="var(--border-color)"
+        />
+        <XAxis
+          dataKey="date"
+          tick={{ fill: "var(--muted-foreground-color)" }}
+          tickMargin={16}
+          stroke="var(--border-color)"
+          fontSize={12}
+        />
+        <YAxis
+          width="auto"
+          stroke="var(--border-color)"
+          tickFormatter={(value) => `${value}%`}
+          tick={{ fill: "var(--muted-foreground-color)" }}
+          tickMargin={8}
+          tickCount={8}
+          fontSize={12}
+          domain={[0, "auto"]}
+        />
         <Tooltip />
-        <Legend />
+        {/* <Legend /> */}
 
         {selectedVariations.map((variation, index) => (
           <Line

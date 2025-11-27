@@ -27,7 +27,6 @@ export const Conversions = () => {
 
   const handleSelect = (values: string[]) => {
     if (values.length === 0) {
-      update(VARIATIONS.map((v) => String(v.id)));
       return;
     }
 

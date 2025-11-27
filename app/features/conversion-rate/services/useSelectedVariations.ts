@@ -20,9 +20,17 @@ export default function useSelectedVariations() {
   }, [searchParams]);
 
   const update = (value: string[]) => {
-    setSearchParams({
-      [QueryParamKeys.SelectedVariations]: encodeURIComponent(value.join(",")),
-    });
+    const newParams = new URLSearchParams(searchParams);
+
+    if (value.length === 0) {
+      newParams.delete(QueryParamKeys.SelectedVariations);
+    } else {
+      newParams.set(
+        QueryParamKeys.SelectedVariations,
+        encodeURIComponent(value.join(","))
+      );
+    }
+    setSearchParams(newParams, { replace: true });
   };
 
   return {
