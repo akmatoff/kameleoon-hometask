@@ -53,6 +53,11 @@ button {
   flex-direction: row;
 }
 
+.center {
+  justify-content: center;
+  align-items: center;
+}
+
 .space-x > * + * {
   margin-left: 8px;
 }
