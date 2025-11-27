@@ -29,6 +29,10 @@ docker build -t kameleoon-hometask . && docker run -d -p 3000:3000 --name kamele
 ### Without docker
 
 ```bash
+npm install
+```
+
+```bash
 npm run build
 ```
 
