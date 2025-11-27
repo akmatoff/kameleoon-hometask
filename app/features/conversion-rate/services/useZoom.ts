@@ -37,13 +37,17 @@ export default function useZoom<T>(data: T[], step = 5) {
   const visibleData = useMemo(() => {
     if (data.length === 0) return [];
 
-    const center = Math.floor(windowSize / 2);
+    let start = centerIndex - Math.floor(windowSize / 2);
+    let end = start + windowSize;
 
-    let start = centerIndex - center;
-    let end = centerIndex + center;
-
-    start = Math.max(start, 0);
-    end = Math.min(end, data.length);
+    if (start < 0) {
+      start = 0;
+      end = Math.min(windowSize, data.length);
+    }
+    if (end > data.length) {
+      end = data.length;
+      start = Math.max(0, data.length - windowSize);
+    }
 
     return data.slice(start, end);
   }, [data, windowSize, centerIndex]);
