@@ -12,17 +12,20 @@ import { useConversionRate } from "@/features/conversion-rate/services/useConver
 import useSelectedVariations from "../services/useSelectedVariations";
 import useViewMode from "../services/useViewMode";
 import type { ChartData } from "../types";
+import { useRef } from "react";
+import useExport from "../services/useExport";
 
 const COLORS = ["var(--chart-1)", "var(--chart-2)", "var(--chart-3)"];
 
 type Props = {
   data: ChartData[];
+  chartRef: React.RefObject<HTMLDivElement | null>;
 };
-export const ConversionChart = ({ data }: Props) => {
+export const ConversionChart = ({ data, chartRef }: Props) => {
   const { selectedVariations } = useSelectedVariations();
 
   return (
-    <ResponsiveContainer width="100%" height={500}>
+    <ResponsiveContainer width="100%" height={500} ref={chartRef}>
       <LineChart data={data}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="date" />

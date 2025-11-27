@@ -7,15 +7,21 @@ import useViewMode from "../services/useViewMode";
 import ThemeToggle from "~/shared/ui/ThemeToggle/ThemeToggle";
 import { useConversionRate } from "../services/useConversionRate";
 import useZoom from "../services/useZoom";
-import { LuMinus, LuPlus } from "react-icons/lu";
+import { LuImage, LuMinus, LuPlus } from "react-icons/lu";
+import { useRef } from "react";
+import useExport from "../services/useExport";
 
 export const Conversions = () => {
+  const chartRef = useRef<HTMLDivElement | null>(null);
+
   const { selectedVariations, update } = useSelectedVariations();
   const { viewMode, update: updateViewMode } = useViewMode();
 
   const data = useConversionRate(viewMode);
 
   const { visibleData, zoomIn, zoomOut } = useZoom(data);
+
+  const { exportPng } = useExport(chartRef);
 
   const handleSelect = (values: string[]) => {
     if (values.length === 0) {
@@ -55,9 +61,13 @@ export const Conversions = () => {
         <button onClick={() => zoomOut()}>
           <LuMinus />
         </button>
+
+        <button onClick={() => exportPng()}>
+          <LuImage />
+        </button>
       </div>
 
-      <ConversionChart data={visibleData} />
+      <ConversionChart chartRef={chartRef} data={visibleData} />
     </div>
   );
 };
