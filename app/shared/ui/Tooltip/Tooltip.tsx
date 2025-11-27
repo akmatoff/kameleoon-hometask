@@ -10,11 +10,12 @@ export const Tooltip = ({ id }: Props) => {
       id={id}
       style={{
         backgroundColor: "var(--background-color)",
-        color: "var(--foreground-color)",
-        border: "1px solid var(--border-color)",
+        color: "var(--muted-foreground-color)",
         boxShadow: "1px 2px 4px rgba(10, 10, 10, 0.05)",
         fontSize: "12px",
+        padding: "4px 8px",
       }}
+      border="1px solid var(--border-color)"
     />
   );
 };

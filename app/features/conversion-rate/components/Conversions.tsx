@@ -11,6 +11,7 @@ import { LuImage, LuMinus, LuPlus } from "react-icons/lu";
 import { useRef } from "react";
 import useExport from "../services/useExport";
 import Tooltip from "~/shared/ui/Tooltip/Tooltip";
+import Button from "~/shared/ui/Button/Button";
 
 export const Conversions = () => {
   const chartRef = useRef<HTMLDivElement | null>(null);
@@ -55,33 +56,33 @@ export const Conversions = () => {
 
         <ThemeToggle />
 
-        <button
+        <Button
           data-tooltip-id="zoom-in"
           data-tooltip-content="Zoom In"
           onClick={() => zoomIn()}
           disabled={!canZoomIn}
         >
           <LuPlus />
-        </button>
+        </Button>
         <Tooltip id="zoom-in" />
 
-        <button
+        <Button
           data-tooltip-id="zoom-out"
           data-tooltip-content="Zoom Out"
           onClick={() => zoomOut()}
           disabled={!canZoomOut}
         >
           <LuMinus />
-        </button>
+        </Button>
         <Tooltip id="zoom-out" />
 
-        <button
+        <Button
           onClick={() => exportPng()}
           data-tooltip-id="export-png"
           data-tooltip-content="Export PNG"
         >
           <LuImage />
-        </button>
+        </Button>
         <Tooltip id="export-png" />
       </div>
 

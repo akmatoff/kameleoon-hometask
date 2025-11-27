@@ -22,9 +22,16 @@
 
 ### With docker
 
-`docker build -t kameleoon-hometask . && docker run -d -p 3000:3000 --name kameleoon kameleoon`
+```bash
+docker build -t kameleoon-hometask . && docker run -d -p 3000:3000 --name kameleoon kameleoon
+```
 
 ### Without docker
 
-1. `npm run build`
-2. `npm start`
+```bash
+npm run build
+```
+
+```bash
+npm start
+```
