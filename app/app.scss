@@ -1,3 +1,5 @@
+@use "./mixins.scss" as *;
+
 :root {
   --background-color: #ffffff;
   --foreground-color: #1b1b23;
@@ -33,6 +35,10 @@ body {
   color: var(--foreground-color);
   background-color: var(--background-color);
   font-family: "Roboto", sans-serif;
+}
+
+button {
+  @include input;
 }
 
 .flex {

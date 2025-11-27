@@ -5,10 +5,17 @@ import MultiSelect from "~/shared/ui/MultiSelect/MultiSelect";
 import Select from "~/shared/ui/Select/Select";
 import useViewMode from "../services/useViewMode";
 import ThemeToggle from "~/shared/ui/ThemeToggle/ThemeToggle";
+import { useConversionRate } from "../services/useConversionRate";
+import useZoom from "../services/useZoom";
+import { LuMinus, LuPlus } from "react-icons/lu";
 
 export const Conversions = () => {
   const { selectedVariations, update } = useSelectedVariations();
   const { viewMode, update: updateViewMode } = useViewMode();
+
+  const data = useConversionRate(viewMode);
+
+  const { visibleData, zoomIn, zoomOut } = useZoom(data);
 
   const handleSelect = (values: string[]) => {
     if (values.length === 0) {
@@ -40,9 +47,17 @@ export const Conversions = () => {
         />
 
         <ThemeToggle />
+
+        <button onClick={() => zoomIn()}>
+          <LuPlus />
+        </button>
+
+        <button onClick={() => zoomOut()}>
+          <LuMinus />
+        </button>
       </div>
 
-      <ConversionChart />
+      <ConversionChart data={visibleData} />
     </div>
   );
 };

@@ -11,14 +11,14 @@ import {
 import { useConversionRate } from "@/features/conversion-rate/services/useConversionRate";
 import useSelectedVariations from "../services/useSelectedVariations";
 import useViewMode from "../services/useViewMode";
+import type { ChartData } from "../types";
 
 const COLORS = ["var(--chart-1)", "var(--chart-2)", "var(--chart-3)"];
 
-export const ConversionChart = () => {
-  const { viewMode } = useViewMode();
-
-  const data = useConversionRate(viewMode);
-
+type Props = {
+  data: ChartData[];
+};
+export const ConversionChart = ({ data }: Props) => {
   const { selectedVariations } = useSelectedVariations();
 
   return (
