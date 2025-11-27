@@ -2,9 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { StorageKeys, type Theme } from "../types";
 
 export default function useTheme() {
-  const [theme, setTheme] = useState<Theme>(
-    localStorage.getItem(StorageKeys.Theme) as Theme
-  );
+  const [theme, setTheme] = useState<Theme>("light");
 
   useEffect(() => {
     const savedTheme = localStorage.getItem(StorageKeys.Theme) as Theme | null;
@@ -21,7 +19,7 @@ export default function useTheme() {
   }, []);
 
   useEffect(() => {
-    const root = document.body;
+    const root = document.documentElement;
 
     if (theme === "dark") {
       root.classList.add("dark");

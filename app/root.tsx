@@ -8,8 +8,9 @@ import {
 } from "react-router";
 
 import type { Route } from "./+types/root";
-import "./app.scss";
 import LoadingSpinner from "./shared/ui/LoadingSpinner/LoadingSpinner";
+import "./app.scss";
+import { StorageKeys } from "./shared/types";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -30,6 +31,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){const t=localStorage.getItem('${StorageKeys.Theme}')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');t==='dark'&&document.documentElement.classList.add('dark');})()`,
+          }}
+        />
         <Meta />
         <Links />
       </head>

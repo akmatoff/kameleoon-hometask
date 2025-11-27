@@ -4,5 +4,8 @@ export default {
   // Config options...
   // Server-side render by default, to enable SPA mode set this to `false`
   ssr: false,
-  basename: "/kameleoon-hometask/",
+  basename: "/",
+  async prerender() {
+    return ["/"];
+  },
 } satisfies Config;
