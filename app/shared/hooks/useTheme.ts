@@ -1,38 +1,33 @@
 import { useCallback, useEffect, useState } from "react";
 import { StorageKeys, type Theme } from "../types";
 
+const getInitialTheme = (): Theme => {
+  const saved = localStorage.getItem(StorageKeys.Theme);
+  if (saved === "light" || saved === "dark") return saved;
+
+  if (window.matchMedia?.("(prefers-color-scheme: dark)").matches) {
+    return "dark";
+  }
+  return "light";
+};
+
 export default function useTheme() {
-  const [theme, setTheme] = useState<Theme>("light");
+  const [theme, setTheme] = useState<Theme>(getInitialTheme);
 
-  useEffect(() => {
-    const savedTheme = localStorage.getItem(StorageKeys.Theme) as Theme | null;
-
-    if (savedTheme) {
-      setTheme(savedTheme);
-    } else {
-      const prefersDark = window.matchMedia(
-        "(prefers-color-scheme: dark)"
-      ).matches;
-
-      setTheme(prefersDark ? "dark" : "light");
-    }
+  const toggleTheme = useCallback(() => {
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
   }, []);
 
   useEffect(() => {
-    const root = document.documentElement;
+    localStorage.setItem(StorageKeys.Theme, theme);
 
+    const root = document.documentElement;
     if (theme === "dark") {
       root.classList.add("dark");
     } else {
       root.classList.remove("dark");
     }
-
-    localStorage.setItem(StorageKeys.Theme, theme);
   }, [theme]);
-
-  const toggleTheme = useCallback(() => {
-    setTheme((prev) => (prev === "light" ? "dark" : "light"));
-  }, []);
 
   return { theme, toggleTheme, setTheme };
 }

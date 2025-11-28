@@ -36,53 +36,65 @@ export const Conversions = () => {
   return (
     <div style={{ width: "100%", padding: "16px" }}>
       <div className="conversions__options">
-        <MultiSelect
-          items={VARIATIONS.map((v) => ({
-            label: v.name,
-            value: String(v.id),
-          }))}
-          selectedValues={selectedVariations.map((v) => String(v.id))}
-          onChange={handleSelect}
-        />
-        <Select
-          items={VIEW_MODE_OPTIONS.map((option) => ({
-            label: option.label,
-            value: option.value,
-          }))}
-          value={viewMode}
-          onChange={(value) => updateViewMode(value)}
-        />
+        <div style={{ display: "flex", gap: "8px" }}>
+          <MultiSelect
+            items={VARIATIONS.map((v) => ({
+              label: v.name,
+              value: String(v.id),
+            }))}
+            selectedValues={selectedVariations.map((v) => String(v.id))}
+            onChange={handleSelect}
+          />
+          <Select
+            items={VIEW_MODE_OPTIONS.map((option) => ({
+              label: option.label,
+              value: option.value,
+            }))}
+            value={viewMode}
+            onChange={(value) => updateViewMode(value)}
+          />
+        </div>
 
-        <ThemeToggle />
+        <div style={{ display: "flex", gap: "8px" }}>
+          <ThemeToggle />
 
-        <Button
-          data-tooltip-id="zoom-in"
-          data-tooltip-content="Zoom In"
-          onClick={() => zoomIn()}
-          disabled={!canZoomIn}
-        >
-          <LuPlus />
-        </Button>
-        <Tooltip id="zoom-in" />
+          <Button
+            onClick={() => exportPng()}
+            data-tooltip-id="export-png"
+            data-tooltip-content="Export PNG"
+          >
+            <LuImage />
+          </Button>
+          <Tooltip id="export-png" />
 
-        <Button
-          data-tooltip-id="zoom-out"
-          data-tooltip-content="Zoom Out"
-          onClick={() => zoomOut()}
-          disabled={!canZoomOut}
-        >
-          <LuMinus />
-        </Button>
-        <Tooltip id="zoom-out" />
+          <div>
+            <Button
+              data-tooltip-id="zoom-in"
+              data-tooltip-content="Zoom In"
+              onClick={() => zoomIn()}
+              disabled={!canZoomIn}
+              style={{ borderTopRightRadius: 0, borderBottomRightRadius: 0 }}
+            >
+              <LuPlus />
+            </Button>
+            <Tooltip id="zoom-in" />
 
-        <Button
-          onClick={() => exportPng()}
-          data-tooltip-id="export-png"
-          data-tooltip-content="Export PNG"
-        >
-          <LuImage />
-        </Button>
-        <Tooltip id="export-png" />
+            <Button
+              data-tooltip-id="zoom-out"
+              data-tooltip-content="Zoom Out"
+              onClick={() => zoomOut()}
+              disabled={!canZoomOut}
+              style={{
+                borderTopLeftRadius: 0,
+                borderBottomLeftRadius: 0,
+                borderLeft: "none",
+              }}
+            >
+              <LuMinus />
+            </Button>
+            <Tooltip id="zoom-out" />
+          </div>
+        </div>
       </div>
 
       <ConversionChart chartRef={chartRef} data={visibleData} />

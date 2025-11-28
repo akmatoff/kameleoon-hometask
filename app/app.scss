@@ -4,14 +4,17 @@
   --background-color: #ffffff;
   --foreground-color: #1b1b23;
   --border-color: #c7c5d0;
+  --border-color-2: #e1dfe7;
   --muted-color: #d6d6d6;
-  --muted-foreground-color: #626264;
+  --muted-foreground-color: #5e5d67;
 
   --chart-1: #4142ef;
   --chart-2: #ff8346;
   --chart-3: #46464f;
+  --chart-4: #a1a3ff;
 
   --primary-radius: 4px;
+  --secondary-radius: 6px;
 }
 
 .dark {
@@ -20,6 +23,7 @@
   --muted-color: #090935;
   --muted-foreground-color: #d0cfd6;
   --border-color: #30265f;
+  --border-color-2: #292055;
 
   --chart-3: #d0d0d6;
 }
@@ -39,6 +43,10 @@ body {
 
 button {
   @include input;
+}
+
+p {
+  margin: 0;
 }
 
 .flex {
@@ -69,10 +77,8 @@ button {
 .conversions__options {
   display: flex;
   margin-bottom: 40px;
-
-  > * + * {
-    margin-left: 8px;
-  }
+  align-items: center;
+  justify-content: space-between;
 }
 
 .tooltip {

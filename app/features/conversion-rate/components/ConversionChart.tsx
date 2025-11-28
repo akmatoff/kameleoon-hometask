@@ -10,8 +10,14 @@ import {
 } from "recharts";
 import useSelectedVariations from "../services/useSelectedVariations";
 import type { ChartData } from "../types";
+import ChartTooltip from "~/shared/ui/ChartTooltip/ChartTooltip";
 
-const COLORS = ["var(--chart-1)", "var(--chart-2)", "var(--chart-3)"];
+const COLORS = [
+  "var(--chart-1)",
+  "var(--chart-2)",
+  "var(--chart-3)",
+  "var(--chart-4)",
+];
 
 type Props = {
   data: ChartData[];
@@ -50,8 +56,7 @@ export const ConversionChart = ({ data, chartRef }: Props) => {
           fontSize={12}
           domain={[0, "auto"]}
         />
-        <Tooltip />
-        {/* <Legend /> */}
+        <Tooltip content={ChartTooltip} />
 
         {selectedVariations.map((variation, index) => (
           <Line
